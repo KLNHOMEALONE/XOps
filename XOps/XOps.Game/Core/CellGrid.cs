@@ -1,10 +1,15 @@
 ﻿using System.Collections.Generic;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Engine.Events;
+using XOps.Common;
+using XOps.Player;
 
 namespace XOps.Core
 {
     public class CellGrid : SyncScript
     {
+        private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
+
         private CellGridGenerator _generator;
 
         private CellGridState _cellGridState;//The grid delegates some of its behaviours to cellGridState object.
@@ -33,7 +38,27 @@ namespace XOps.Core
 
         public override void Update()
         {
-            
+              MoveTo();        
+        }
+
+        private void MoveTo()
+        {
+            // Character speed
+            ClickResult clickResult;
+            if (_moveDestinationEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
+            {
+                //if (clickResult.Type == ClickType.Ground)
+                //{
+                //    attackEntity = null;
+                //    UpdateDestination(clickResult.WorldPosition);
+                //}
+
+                //if (clickResult.Type == ClickType.LootCrate)
+                //{
+                //    attackEntity = clickResult.ClickedEntity;
+                //    Attack();
+                //}
+            }
         }
     }
 }

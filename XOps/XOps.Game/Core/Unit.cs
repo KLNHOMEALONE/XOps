@@ -4,13 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
+using SiliconStudio.Xenko.Engine.Events;
+using XOps.Common;
 using XOps.Core.Events;
+using XOps.Player;
 
 namespace XOps.Core
 {
     public abstract class Unit : SyncScript
     {
         private static readonly Pathfinding Pathfinder = new AStarPathfinding();
+
+        private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
 
         /// <summary>
         /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.
@@ -73,6 +78,10 @@ namespace XOps.Core
         /// Indicates if movement animation is playing.
         /// </summary>
         public bool IsMoving { get; set; }
+
+        public override void Update()
+        {
+        }
 
         /// <summary>
         /// Method called after object instantiation to initialize fields etc. 

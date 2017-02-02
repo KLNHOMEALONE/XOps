@@ -153,6 +153,15 @@ Hierarchy:
                             c71fe99dd9ae4215c81343ba4e857950: !StaticPlaneColliderShapeDesc
                                 Normal: {X: 0.0, Y: 1.0, Z: 0.0}
                                 Offset: 0.0
+                    888838c579621be2ddcda453c6a3e37e: !XOps.Player.PlayerInput,XOps.Game
+                        Id: 50e3fceb-8b19-4a12-be64-606686ddae9f
+                        Priority: 4
+                        ControllerIndex: 0
+                        DeadZone: 0.25
+                        Highlight: null
+                        HighlightMaterial: null
+                        Camera: 197576b7-61e7-4840-9da6-fb77d4b6b106/61bff9ed-94ea-452f-a610-d696b88caef0
+                        ClickEffect: null
         -   Entity:
                 Id: 197576b7-61e7-4840-9da6-fb77d4b6b106
                 Name: Camera
