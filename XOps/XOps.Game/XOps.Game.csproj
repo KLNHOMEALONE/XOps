@@ -109,6 +109,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicCameraController.cs" />
+    <Compile Include="Common\ClickResult.cs" />
+    <Compile Include="Common\InputManagerExtensions.cs" />
+    <Compile Include="Common\Utils.cs" />
     <Compile Include="Core\AStarPathfinding.cs" />
     <Compile Include="Core\Cell.cs" />
     <Compile Include="Core\CellGrid.cs" />
@@ -137,6 +140,7 @@
     <Compile Include="Core\UnitStateMarkedAsSelected.cs" />
     <Compile Include="Core\UnitStateNormal.cs" />
     <Compile Include="Example\MySquare.cs" />
+    <Compile Include="Player\PlayerInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

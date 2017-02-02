@@ -140,7 +140,9 @@ Hierarchy:
                         Cells: null
                     5af91fc4c880ca900d85c792eb807a0b: !StaticColliderComponent
                         Id: bd9dbc94-94af-4655-aa00-22da6c6843d9
-                        CanSleep: false
+                        CollisionGroup: CustomFilter1
+                        ProcessCollisions: false
+                        CanSleep: true
                         Restitution: 0.0
                         Friction: 0.5
                         RollingFriction: 0.0

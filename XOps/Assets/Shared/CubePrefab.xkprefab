@@ -20,3 +20,19 @@ Hierarchy:
                         Id: 8a42db6b-36f5-4af7-abc8-54f19b1de293
                         Model: c2d438f2-8239-4537-bc36-74e594183e38:Cube
                         Materials: {}
+                    4a3c6b509ad710ac8429f2107ed127c2: !StaticColliderComponent
+                        Id: e844b61f-80b2-40c5-812c-2d19a7a988d8
+                        CollisionGroup: CustomFilter2
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        ColliderShapes:
+                            269e853157ffeb3e1d654ada0d30d80d: !BoxColliderShapeDesc
+                                Is2D: false
+                                Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
