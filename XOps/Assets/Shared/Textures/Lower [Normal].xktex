@@ -1,0 +1,7 @@
+!Texture
+Id: 1a9482c2-5002-4d24-ba6a-896e733eb0da
+SerializedVersion: {Xenko: 1.4.0-beta}
+Tags: []
+Source: ../../../Resources/Textures/normalmapLower.png
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+PremultiplyAlpha: false

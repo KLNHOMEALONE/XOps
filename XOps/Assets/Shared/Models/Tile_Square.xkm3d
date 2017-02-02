@@ -1,3 +1,18 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:17516d702595fe8ac8296a9a49757565e9b3f40ab1c36751aca5ae720cd9e119
-size 683
+!Model
+Id: 8ddeffd8-ba37-46f3-9384-a2b4140a6d0b
+SerializedVersion: {Xenko: 1.5.0-alpha02}
+Tags: []
+Source: ../../../Resources/Models/Tile_Square.FBX
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+Materials:
+    84f7c10bcba857eca45b8b7e0ab854a3:
+        Name: M_Grey
+        MaterialInstance:
+            Material: 3f442a86-0e04-4b04-ba50-8c84e93bfc58:Materials/M_Grey
+    bce7756a88741a5ac923d2796e026785:
+        Name: M_Black
+        MaterialInstance:
+            Material: ad9a163a-69c2-4a56-8179-760bfd264649:Materials/M_Black
+Skeleton: null
+~SourceHashes:
+    bce687f324e2da969349e8b022fa64d6~../../../Resources/Models/Tile_Square.FBX: 57e292f8cb0f02a590df27a3a614b802
