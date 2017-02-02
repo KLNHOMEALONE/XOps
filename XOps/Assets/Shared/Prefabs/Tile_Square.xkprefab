@@ -1,0 +1,42 @@
+!PrefabAsset
+Id: b3f4e171-b8ce-4999-8ea2-aca269ebcc36
+SerializedVersion: {Xenko: 1.9.0-beta05}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 73bf0d52-c88b-4f6b-8886-4526d7ad1807
+    Parts:
+        -   Entity:
+                Id: 73bf0d52-c88b-4f6b-8886-4526d7ad1807
+                Name: Tile_Square
+                Components:
+                    41e7cf0001f7aab548e526b1aa871307: !TransformComponent
+                        Id: ad18b24f-de7a-4e18-a9fa-edcb68643973
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    e29547e8ac2f6366ec01374c66e7f262: !ModelComponent
+                        Id: cd8180cc-3911-4601-89ca-e9f9b98d958b
+                        Model: 8ddeffd8-ba37-46f3-9384-a2b4140a6d0b:Models/Tile_Square
+                        Materials: {}
+                    8f9b0aa0d362811059f3f14c7f98333d: !StaticColliderComponent
+                        Id: 5887eef2-2cd9-4662-969e-8a442c1ab1f3
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        ColliderShapes:
+                            f562f164f1f61572048c0b862162540c: !BoxColliderShapeDesc
+                                Is2D: false
+                                Size: {X: 1.0, Y: 1.0, Z: 1.0}
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                    d4f15eead9a04d54e49176d01a194e71: !XOps.Example.MySquare,XOps.Game
+                        Id: afeb674a-7f43-4634-a87a-b892d24adcbd
+                        IsTaken: false
+                        MovementCost: 0
+                        OffsetCoord: {X: 0.0, Y: 0.0}

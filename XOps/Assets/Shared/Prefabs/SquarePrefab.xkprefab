@@ -1,0 +1,27 @@
+!PrefabAsset
+Id: 620c3026-0d51-4edc-9269-82c2cdf2aef6
+SerializedVersion: {Xenko: 1.9.0-beta05}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - bb03368f-1366-4511-a71e-dbaa1ba861f1
+    Parts:
+        -   Entity:
+                Id: bb03368f-1366-4511-a71e-dbaa1ba861f1
+                Name: Tile
+                Components:
+                    a72fdcdec5a533bb57e823b33bae1e51: !TransformComponent
+                        Id: 58e7ae8f-5894-4d9e-9ec9-33ec549b1dcf
+                        Position: {X: 1.00955009, Y: 0.0, Z: 0.8695028}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    e8e4c9fc855d7327ef987a36a95ce709: !ModelComponent
+                        Id: ced37f59-c7ab-4740-8d2b-13f59ffd3df2
+                        Model: 63933894-3432-4289-ac2b-4c226cd2f3d5:Models/Tile
+                        Materials: {}
+                    4481b6eb68f3978a0b1a5d94d1fadd05: !XOps.Example.MySquare,XOps.Game
+                        Id: aa4e7a73-3546-401a-9b1a-d32f41cee50b
+                        IsTaken: false
+                        MovementCost: 0
+                        OffsetCoord: {X: 0.0, Y: 0.0}
