@@ -121,7 +121,7 @@ Hierarchy:
                         Units: null
                     4a08c4454c74ceb96717f539f1000606: !XOps.Core.RectangularSquareGridGenerator,XOps.Game
                         Id: f9396f61-aaa3-4269-bab3-6666b291af3d
-                        SquarePrefab: 620c3026-0d51-4edc-9269-82c2cdf2aef6:SquarePrefab
+                        SquarePrefab: 620c3026-0d51-4edc-9269-82c2cdf2aef6:Prefabs/SquarePrefab
                         CellsParent: null
                         Cells: null
                         Width: 10
@@ -135,7 +135,7 @@ Hierarchy:
                     fa925c42ccdf1b386e0fa58030d57115: !XOps.Core.ObstacleGenerator,XOps.Game
                         Id: 474c7383-40b5-4ede-bc07-a313fd3f4e06
                         Priority: 1
-                        ObstaclePrefab: 4bbf8d90-0e2d-4360-ae44-623c543d82ba:CubePrefab
+                        ObstaclePrefab: 4bbf8d90-0e2d-4360-ae44-623c543d82ba:Prefabs/CubePrefab
                         NumberofObstacles: 15
                         Cells: null
                     5af91fc4c880ca900d85c792eb807a0b: !StaticColliderComponent
@@ -210,7 +210,7 @@ Hierarchy:
                         Children: {}
                     0ecf58de483288014d06250be86d80c0: !ModelComponent
                         Id: c9ec9ca0-8a9a-4c40-a3f8-9e5ae3d3bb7d
-                        Model: 0f78e8cc-d33e-48ff-8ba7-449d0490507f:Sphere
+                        Model: 0f78e8cc-d33e-48ff-8ba7-449d0490507f:Models/Sphere
                         Materials: {}
             Base:
                 BasePartAsset: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:SpherePrefab
