@@ -183,6 +183,20 @@ namespace XOps.Common
                         }
                     }
                 }
+                var unitBody = hitResult.Collider as CharacterComponent;
+                if (unitBody?.CollisionGroup == CollisionFilterGroups.CharacterFilter)
+                {
+                    type = ClickType.Unit;
+                    var distance = (vectorNear.XYZ() - hitResult.Point).LengthSquared();
+                    if (distance < minDistance)
+                    {
+                        minDistance = distance;
+                        clickResult.Type = type;
+                        clickResult.HitResult = hitResult;
+                        clickResult.WorldPosition = hitResult.Point;
+                        clickResult.ClickedEntity = hitResult.Collider.Entity;
+                    }
+                }
             }
 
             return (clickResult.Type != ClickType.Empty);

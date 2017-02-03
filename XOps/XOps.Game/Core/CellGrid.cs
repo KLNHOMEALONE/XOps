@@ -11,6 +11,7 @@ namespace XOps.Core
     public class CellGrid : SyncScript
     {
         private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
+        private readonly EventReceiver<ClickResult> _unitClickedEvent = new EventReceiver<ClickResult>(PlayerInput.UnitClickedEventKey);
 
         private CellGridGenerator _generator;
 
@@ -44,7 +45,16 @@ namespace XOps.Core
 
         public override void Update()
         {
-              MoveTo();        
+            SelectUnit();
+            MoveTo();        
+        }
+
+        private void SelectUnit()
+        {
+            ClickResult clickResult;
+            if (_unitClickedEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
+            {
+            }
         }
 
         private void MoveTo()

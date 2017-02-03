@@ -208,6 +208,7 @@ Hierarchy:
                         Materials: {}
                     b0d9480c106dbf0ecbbe90d43214e2f1: !CharacterComponent
                         Id: f1b80543-9211-4017-898a-239f8a0300c5
+                        CollisionGroup*: CharacterFilter
                         CanSleep: false
                         Restitution: 0.0
                         Friction: 0.5
@@ -223,7 +224,7 @@ Hierarchy:
                                 Is2D: false
                                 LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
             Base:
-                BasePartAsset: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:SpherePrefab
+                BasePartAsset: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:Prefabs/SpherePrefab
                 BasePartId: f3cf6fa3-c81a-44e5-91cf-ea913649f0b2
                 InstanceId: ff9ae2a8-c8d6-43b8-a57f-a1ef196595f2
         -   Entity:

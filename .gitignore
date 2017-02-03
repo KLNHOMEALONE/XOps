@@ -2,3 +2,7 @@ XOps/Bin/
 XOps/XOps.Game/obj/
 XOps/XOps.Windows/obj/
 XOps/obj/
+/XOps/XOps.xkpkg.user
+/XOps/XOps.Windows/XOps.Windows.csproj.user
+/XOps/XOps.Game/XOps.Game.csproj.user
+*.suo

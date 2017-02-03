@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Core;
+using SiliconStudio.Xenko.Engine.Events;
 using SiliconStudio.Xenko.Rendering;
+using XOps.Common;
 
 namespace XOps.Core
 {
@@ -23,12 +25,12 @@ namespace XOps.Core
         /// </summary>
         public int MovementCost;
 
-        public Vector3 CellSize { get; set; }
+        //public Vector3 CellSize { get; set; }
 
-        /// <summary>
-        /// CellClicked event is invoked when user clicks the unit. It requires a collider on the cell game object to work.
-        /// </summary>
-        public event EventHandler CellClicked;
+
+        //public event EventHandler CellClicked;
+
+        private readonly EventReceiver<Cell> _unitClickedEventReceiver = new EventReceiver<Cell>(Unit.CellClickedEventKey);
         /// <summary>
         /// CellHighlighed event is invoked when user moves cursor over the cell. It requires a collider on the cell game object to work.
         /// </summary>
@@ -47,7 +49,8 @@ namespace XOps.Core
 
         void OnMouseDown()
         {
-            CellClicked?.Invoke(this, new EventArgs());
+
+            //CellClicked?.Invoke(this, new EventArgs());
         }
 
         /// <summary>

@@ -16,6 +16,10 @@ namespace XOps.Core
         private static readonly Pathfinding Pathfinder = new AStarPathfinding();
 
         private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
+        /// <summary>
+        /// CellClicked event is invoked when user clicks the unit. It requires a collider on the cell game object to work.
+        /// </summary>
+        public static readonly EventKey<Cell> CellClickedEventKey = new EventKey<Cell>();
 
         /// <summary>
         /// UnitClicked event is invoked when user clicks the unit. It requires a collider on the unit game object to work.

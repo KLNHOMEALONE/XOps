@@ -1,3 +1,40 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:01a84201a55c8d1c2d307fd1407c9acc309196743dc49dba675207a1733cbada
-size 1142
+!Package
+Id: 273f1264-9244-4abc-8f48-7c6be9557ad8
+SerializedVersion: {Assets: 0.0.4}
+Meta:
+    Name: XOps
+    Version: 1.0.0.0
+    Authors: []
+    Owners: []
+    RootNamespace: XOps
+    Dependencies:
+        -   Name: Xenko
+            Version: 1.9.2-beta
+            RootAssets: []
+LocalDependencies: []
+Profiles:
+    -   Name: Shared
+        Platform: Shared
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Shared
+            -   Path: XOps.Game/Effects
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: acc2b690-258a-48ed-93f0-2001e612a133
+                Location: XOps.Game/XOps.Game.csproj
+                Type: Library
+    -   Name: Windows
+        Platform: Windows
+        InheritProfiles: []
+        AssetFolders:
+            -   Path: Assets/Windows
+        OutputGroupDirectories: {}
+        ProjectReferences:
+            -   Id: 173c7def-ce5b-49c0-9ad9-7f29fe14094f
+                Location: XOps.Windows/XOps.Windows.csproj
+                Type: Executable
+ExplicitFolders: []
+Bundles: []
+TemplateFolders: []
+RootAssets: []

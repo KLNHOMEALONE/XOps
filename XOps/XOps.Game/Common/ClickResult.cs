@@ -20,6 +20,11 @@ namespace XOps.Common
         /// The result hit a treasure chest object
         /// </summary>
         LootCrate,
+
+        /// <summary>
+        /// The result hit a unit
+        /// </summary>
+        Unit
     }
 
     /// <summary>
