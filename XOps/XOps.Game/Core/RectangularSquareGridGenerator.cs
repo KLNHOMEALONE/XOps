@@ -13,9 +13,6 @@ namespace XOps.Core
         [Display("SquarePrefab")]
         public Prefab SquarePrefab { get; set; }
 
-        public int Width { get; set; }
-        public int Height { get; set; }
-
         public override void Update()
         {
         }
@@ -38,7 +35,7 @@ namespace XOps.Core
                     var prefabEntity = SquarePrefab.Instantiate().First();
                     var cell = prefabEntity.Get<Cell>();
                     var squareSize = cell.GetCellDimensions(prefabEntity);
-
+                    cell.CellSize = squareSize;
                     cell.OffsetCoord = new Vector2(i, j);
                     cell.MovementCost = 1;
                     prefabEntity.Transform.Position = new Vector3(i * squareSize.X + position.X, 0.5f + position.Y, j * squareSize.Z + position.Z);

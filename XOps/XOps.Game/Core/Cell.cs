@@ -23,6 +23,8 @@ namespace XOps.Core
         /// </summary>
         public int MovementCost;
 
+        public Vector3 CellSize { get; set; }
+
         /// <summary>
         /// CellClicked event is invoked when user clicks the unit. It requires a collider on the cell game object to work.
         /// </summary>

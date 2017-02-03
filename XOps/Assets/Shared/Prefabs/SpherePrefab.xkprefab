@@ -20,3 +20,19 @@ Hierarchy:
                         Id: c9ec9ca0-8a9a-4c40-a3f8-9e5ae3d3bb7d
                         Model: 0f78e8cc-d33e-48ff-8ba7-449d0490507f:Models/Sphere
                         Materials: {}
+                    b0d9480c106dbf0ecbbe90d43214e2f1: !CharacterComponent
+                        Id: f1b80543-9211-4017-898a-239f8a0300c5
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        FallSpeed: 10.0
+                        MaxSlope: {Radians: 0.7853982}
+                        JumpSpeed: 5.0
+                        Gravity: -10.0
+                        ColliderShapes:
+                            9bf507d2c77de4746a437653f9a9c0c5: !SphereColliderShapeDesc
+                                Is2D: false
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}

@@ -25,3 +25,19 @@ Hierarchy:
                         IsTaken: false
                         MovementCost: 0
                         OffsetCoord: {X: 0.0, Y: 0.0}
+                    a6f493e54e9bfc036c82c94703c2e360: !StaticColliderComponent
+                        Id: e07e0b03-aad9-4956-a694-50b2eab81c72
+                        CollisionGroup: CustomFilter1
+                        ProcessCollisions: false
+                        CanSleep: true
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        IsTrigger: false
+                        ColliderShapes:
+                            caf0a659a4f78b9e01e90c2267a52156: !ColliderShapeAssetDesc
+                                Shape: 527cfa3d-53fd-482c-ad24-2d53045398dc:TileCollider
+                            5860b01c56f5ca218398bf2a30a12f0c: !ColliderShapeAssetDesc
+                                Shape: null

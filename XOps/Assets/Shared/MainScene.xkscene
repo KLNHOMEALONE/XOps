@@ -138,21 +138,6 @@ Hierarchy:
                         ObstaclePrefab: 4bbf8d90-0e2d-4360-ae44-623c543d82ba:Prefabs/CubePrefab
                         NumberofObstacles: 15
                         Cells: null
-                    5af91fc4c880ca900d85c792eb807a0b: !StaticColliderComponent
-                        Id: bd9dbc94-94af-4655-aa00-22da6c6843d9
-                        CollisionGroup: CustomFilter1
-                        ProcessCollisions: false
-                        CanSleep: true
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        IsTrigger: false
-                        ColliderShapes:
-                            c71fe99dd9ae4215c81343ba4e857950: !StaticPlaneColliderShapeDesc
-                                Normal: {X: 0.0, Y: 1.0, Z: 0.0}
-                                Offset: 0.0
                     888838c579621be2ddcda453c6a3e37e: !XOps.Player.PlayerInput,XOps.Game
                         Id: 50e3fceb-8b19-4a12-be64-606686ddae9f
                         Priority: 4
@@ -221,6 +206,22 @@ Hierarchy:
                         Id: c9ec9ca0-8a9a-4c40-a3f8-9e5ae3d3bb7d
                         Model: 0f78e8cc-d33e-48ff-8ba7-449d0490507f:Models/Sphere
                         Materials: {}
+                    b0d9480c106dbf0ecbbe90d43214e2f1: !CharacterComponent
+                        Id: f1b80543-9211-4017-898a-239f8a0300c5
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        FallSpeed: 10.0
+                        MaxSlope: {Radians: 0.7853982}
+                        JumpSpeed: 5.0
+                        Gravity: -10.0
+                        ColliderShapes:
+                            9bf507d2c77de4746a437653f9a9c0c5: !SphereColliderShapeDesc
+                                Is2D: false
+                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
             Base:
                 BasePartAsset: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:SpherePrefab
                 BasePartId: f3cf6fa3-c81a-44e5-91cf-ea913649f0b2
