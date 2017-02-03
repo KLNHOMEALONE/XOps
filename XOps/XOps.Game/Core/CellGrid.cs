@@ -36,12 +36,12 @@ namespace XOps.Core
 
         public int NumberOfPlayers { get; private set; }
 
-        //[DataMember(20)]
-        //[Display("CurrentPlayer")]
-        //public Player CurrentPlayer
-        //{
-        //    get { return Players?.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)); }
-        //}
+        [DataMember(20)]
+        [Display("CurrentPlayer")]
+        public Player CurrentPlayer
+        {
+            get { return Players?.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)); }
+        }
 
         public Prefab PlayerPrefab { get; set; }
 
@@ -62,6 +62,7 @@ namespace XOps.Core
             Players.Add(player);
             NumberOfPlayers = Players.Count;
             CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
+            StartGame();
             //_cellBoundsX = Cells[0].CellSize.X;
             //_celleBoundsZ = Cells[0].CellSize.Z;
         }
@@ -89,8 +90,8 @@ namespace XOps.Core
             //if (GameStarted != null)
             //    GameStarted.Invoke(this, new EventArgs());
 
-            //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
-            //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+            Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
         }
         public override void Update()
         {
@@ -103,6 +104,11 @@ namespace XOps.Core
             ClickResult clickResult;
             if (_unitClickedEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
             {
+                var unit = clickResult.ClickedEntity.Get<Unit>();
+                if (unit != null)
+                {
+                    CellGridState.OnUnitClicked(unit);
+                }
             }
         }
 

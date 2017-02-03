@@ -25,6 +25,10 @@ Hierarchy:
                         IsTaken: false
                         MovementCost: 0
                         OffsetCoord: {X: 0.0, Y: 0.0}
+                        DefaultMaterial: ede352aa-935f-48fd-bda4-8a219dcde7ba:Materials/Ground Material
+                        ReachableMaterial: 7f93feb6-1a54-4360-b124-8c6bfb8bd456:Materials/Sphere Material
+                        PathMaterial: ce82229f-b603-40da-8d1b-0fc2918866d0:Materials/GreenMaterial
+                        HighlightedMaterial: adb9a93e-2952-4b25-8314-4f38b6f34ae0:Materials/HighlightedMaterial
                     a6f493e54e9bfc036c82c94703c2e360: !StaticColliderComponent
                         Id: e07e0b03-aad9-4956-a694-50b2eab81c72
                         CollisionGroup: CustomFilter1

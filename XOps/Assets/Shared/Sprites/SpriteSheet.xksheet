@@ -1,0 +1,15 @@
+!SpriteSheet
+Id: 6c3a4afb-0e46-4088-a96e-d2c4218dcf6e
+SerializedVersion: {Xenko: 1.5.0-alpha01}
+Tags: []
+Type: Sprite2D
+ColorKeyColor: {R: 255, G: 0, B: 255, A: 255}
+Packing: {}
+Sprites:
+    6eda62e7048f290950ee198678916f29:
+        Source: ../../../Resources/Textures/BlankTile.png
+        Name: BlankTile
+        TextureRegion: {X: 0, Y: 0, Width: 64, Height: 64}
+        Center: {X: 0.0, Y: 0.0}
+        Borders: {X: 0.0, Y: 0.0, Z: 0.0, W: 0.0}
+        BorderColor: {R: 0, G: 0, B: 0, A: 0}

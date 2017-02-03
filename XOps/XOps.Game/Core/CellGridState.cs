@@ -27,7 +27,8 @@ namespace XOps.Core
 
         public virtual void OnStateEnter()
         {
-            if (_cellGrid.Units.Select(u => u.PlayerNumber).Distinct().ToList().Count == 1)
+            var distinctUnits = _cellGrid.Units.Select(u => u.PlayerNumber).Distinct().ToList();
+            if (distinctUnits.Count == 1 && !distinctUnits.First().Equals(0))
             {
                 _cellGrid.CellGridState = new CellGridStateGameOver(_cellGrid);
             }

@@ -16,6 +16,14 @@ namespace XOps.Core
         //public Model Source { get; set; }
         public Vector2 OffsetCoord { get; set; }
 
+        public Material DefaultMaterial { get; set; }
+
+        public Material ReachableMaterial { get; set; }
+
+        public Material PathMaterial { get; set; }
+
+        public Material HighlightedMaterial { get; set; }
+
         /// <summary>
         /// Indicates if something is occupying the cell.
         /// </summary>
