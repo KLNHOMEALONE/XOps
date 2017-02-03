@@ -93,7 +93,10 @@ namespace XOps.Player
                     {
                         UnitClickedEventKey.Broadcast(clickResult);
                     }
-
+                    if (clickResult.Type == ClickType.LootCrate)
+                    {
+                        MoveDestinationEventKey.Broadcast(clickResult);
+                    }
                     if (ClickEffect != null && clickResult.Type == ClickType.Ground)
                     {
                         this.SpawnPrefabInstance(ClickEffect, null, 1.2f, Matrix.RotationQuaternion(Quaternion.BetweenDirections(Vector3.UnitY, clickResult.HitResult.Normal)) * Matrix.Translation(clickResult.WorldPosition));

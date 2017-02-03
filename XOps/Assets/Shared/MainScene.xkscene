@@ -101,7 +101,6 @@ Hierarchy:
         - 197576b7-61e7-4840-9da6-fb77d4b6b106
         - 65adab78-611f-4747-be81-a88072c5d373
         - f965e782-3441-4cfd-b015-459afca3405a
-        - b69e6d9b-a374-49bb-82b8-e735f4c45e0a
         - 130c5e9d-e2c1-4cd5-9bef-c988f9f1ccb4
     Parts:
         -   Entity:
@@ -117,8 +116,11 @@ Hierarchy:
                     65ca876acccad5c2652fec2f33317b77: !XOps.Core.CellGrid,XOps.Game
                         Id: 7e483c17-c39a-47ea-a979-ebe65b238cad
                         Priority: 3
+                        PlayerPrefab: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:Prefabs/SpherePrefab
                         Cells: null
                         Units: null
+                        Players: {}
+                        CurrentPlayerNumber: 0
                     4a08c4454c74ceb96717f539f1000606: !XOps.Core.RectangularSquareGridGenerator,XOps.Game
                         Id: f9396f61-aaa3-4269-bab3-6666b291af3d
                         SquarePrefab: 620c3026-0d51-4edc-9269-82c2cdf2aef6:Prefabs/SquarePrefab
@@ -192,41 +194,6 @@ Hierarchy:
                                 PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
                                 BiasParameters: {}
                         Intensity: 5.0
-        -   Entity:
-                Id: b69e6d9b-a374-49bb-82b8-e735f4c45e0a
-                Name: Sphere
-                Components:
-                    4c92a5eb082345c027c84c55c5457f80: !TransformComponent
-                        Id: 73a23d3d-1aa0-40cf-8213-7e834f1189a2
-                        Position: {X: 0.0, Y: 0.5, Z: 0.0}
-                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
-                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: {}
-                    0ecf58de483288014d06250be86d80c0: !ModelComponent
-                        Id: c9ec9ca0-8a9a-4c40-a3f8-9e5ae3d3bb7d
-                        Model: 0f78e8cc-d33e-48ff-8ba7-449d0490507f:Models/Sphere
-                        Materials: {}
-                    b0d9480c106dbf0ecbbe90d43214e2f1: !CharacterComponent
-                        Id: f1b80543-9211-4017-898a-239f8a0300c5
-                        CollisionGroup*: CharacterFilter
-                        CanSleep: false
-                        Restitution: 0.0
-                        Friction: 0.5
-                        RollingFriction: 0.0
-                        CcdMotionThreshold: 0.0
-                        CcdSweptSphereRadius: 0.0
-                        FallSpeed: 10.0
-                        MaxSlope: {Radians: 0.7853982}
-                        JumpSpeed: 5.0
-                        Gravity: -10.0
-                        ColliderShapes:
-                            9bf507d2c77de4746a437653f9a9c0c5: !SphereColliderShapeDesc
-                                Is2D: false
-                                LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
-            Base:
-                BasePartAsset: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:Prefabs/SpherePrefab
-                BasePartId: f3cf6fa3-c81a-44e5-91cf-ea913649f0b2
-                InstanceId: ff9ae2a8-c8d6-43b8-a57f-a1ef196595f2
         -   Entity:
                 Id: f965e782-3441-4cfd-b015-459afca3405a
                 Name: Skybox

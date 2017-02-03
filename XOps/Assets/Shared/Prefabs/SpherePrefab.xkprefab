@@ -22,6 +22,7 @@ Hierarchy:
                         Materials: {}
                     b0d9480c106dbf0ecbbe90d43214e2f1: !CharacterComponent
                         Id: f1b80543-9211-4017-898a-239f8a0300c5
+                        CollisionGroup: CharacterFilter
                         CanSleep: false
                         Restitution: 0.0
                         Friction: 0.5
@@ -36,3 +37,17 @@ Hierarchy:
                             9bf507d2c77de4746a437653f9a9c0c5: !SphereColliderShapeDesc
                                 Is2D: false
                                 LocalOffset: {X: 0.0, Y: 0.0, Z: 0.0}
+                    d92e41f30c13eeac52457b7418a7fc52: !XOps.Example.MyUnit,XOps.Game
+                        Id: 6dba7535-e174-44f3-8c7c-4123ec110945
+                        HitPoints: 15
+                        AttackRange: 9
+                        AttackFactor: 1
+                        DefenceFactor: 1
+                        MovementPoints: 5
+                        MovementSpeed: 2.0
+                        ActionPoints: 9
+                        PlayerNumber: 0
+                        UnitState: null
+                        Buffs: null
+                        Cell: null
+                        IsMoving: false

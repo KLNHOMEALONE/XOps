@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Engine.Events;
@@ -12,7 +14,7 @@ namespace XOps.Core
     {
         private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
         private readonly EventReceiver<ClickResult> _unitClickedEvent = new EventReceiver<ClickResult>(PlayerInput.UnitClickedEventKey);
-
+        private readonly System.Random _rnd = new System.Random();
         private CellGridGenerator _generator;
 
         //private float _cellBoundsX, _celleBoundsZ;
@@ -32,17 +34,64 @@ namespace XOps.Core
             }
         }
 
+        public int NumberOfPlayers { get; private set; }
+
+        //[DataMember(20)]
+        //[Display("CurrentPlayer")]
+        //public Player CurrentPlayer
+        //{
+        //    get { return Players?.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)); }
+        //}
+
+        public Prefab PlayerPrefab { get; set; }
+
         public List<Cell> Cells { get; private set; }
         public List<Unit> Units { get; private set; }
 
+        public List<Player> Players { get; set; } = new List<Player>();
+
+        public int CurrentPlayerNumber { get; set; }
+
         public override void Start()
         {
+            Units = new List<Unit>();
             _generator = Entity.Get<CellGridGenerator>();
             Cells = _generator.Cells;
+            PlacePlayer();
+            var player = new HumanPlayer() {PlayerNumber = 0};
+            Players.Add(player);
+            NumberOfPlayers = Players.Count;
+            CurrentPlayerNumber = Players.Min(p => p.PlayerNumber);
             //_cellBoundsX = Cells[0].CellSize.X;
             //_celleBoundsZ = Cells[0].CellSize.Z;
         }
 
+        private void PlacePlayer()
+        {
+            List<Cell> freeCells = Cells.FindAll(h => h.IsTaken == false);
+            freeCells = freeCells.OrderBy(h => _rnd.Next()).ToList();
+            var cell = freeCells.ElementAt(0);
+            freeCells.RemoveAt(0);
+            cell.IsTaken = true;
+
+            var unit = PlayerPrefab.Instantiate().First();
+            unit.Transform.Position = cell.Entity.Transform.Position + new Vector3(0, 0, 0);
+            unit.Get<Unit>().PlayerNumber = 0;
+            unit.Get<Unit>().Cell = cell;
+            unit.Get<Unit>().Initialize();
+            Units.Add(unit.Get<Unit>());
+            SceneSystem.SceneInstance.Scene.Entities.Add(unit);
+        }
+
+
+        public void StartGame()
+        {
+            //if (GameStarted != null)
+            //    GameStarted.Invoke(this, new EventArgs());
+
+            //Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+            //Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+        }
         public override void Update()
         {
             SelectUnit();
@@ -70,11 +119,11 @@ namespace XOps.Core
                     //UpdateDestination(clickResult.WorldPosition);
                 }
 
-                //if (clickResult.Type == ClickType.LootCrate)
-                //{
-                //    attackEntity = clickResult.ClickedEntity;
-                //    Attack();
-                //}
+                if (clickResult.Type == ClickType.LootCrate)
+                {
+                    //attackEntity = clickResult.ClickedEntity;
+                    //Attack();
+                }
             }
         }
 

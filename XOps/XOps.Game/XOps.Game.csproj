@@ -119,15 +119,19 @@
     <Compile Include="Core\CellGridState.cs" />
     <Compile Include="Core\CellExtension.cs" />
     <Compile Include="Core\CellGridStateGameOver.cs" />
+    <Compile Include="Core\CellGridStateUnitSelected.cs" />
+    <Compile Include="Core\CellGridStateWaitingForInput.cs" />
     <Compile Include="Core\Events\AttackEventArgs.cs" />
     <Compile Include="Core\Events\MovementEventArgs.cs" />
     <Compile Include="Core\HeapPriorityQueue.cs" />
+    <Compile Include="Core\HumanPlayer.cs" />
     <Compile Include="Core\IBuff.cs" />
     <Compile Include="Core\IGraphNode.cs" />
     <Compile Include="Core\IPriorityQueue.cs" />
     <Compile Include="Core\IUnitGenerator.cs" />
     <Compile Include="Core\ObstacleGenerator.cs" />
     <Compile Include="Core\Pathfinding.cs" />
+    <Compile Include="Core\Player.cs" />
     <Compile Include="Core\PriorityQueueNode.cs" />
     <Compile Include="Core\RandomUnitGenerator.cs" />
     <Compile Include="Core\RectangularSquareGridGenerator.cs" />
@@ -140,6 +144,7 @@
     <Compile Include="Core\UnitStateMarkedAsSelected.cs" />
     <Compile Include="Core\UnitStateNormal.cs" />
     <Compile Include="Example\MySquare.cs" />
+    <Compile Include="Example\MyUnit.cs" />
     <Compile Include="Player\PlayerInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
