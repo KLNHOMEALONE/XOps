@@ -88,7 +88,6 @@ namespace XOps.Core
 
             _pathsInRange = _unit.GetAvailableDestinations(_cellGrid.Cells);
             var cellsNotInRange = _cellGrid.Cells.Except(_pathsInRange);
-
             foreach (var cell in cellsNotInRange)
             {
                 cell.UnMark();
@@ -97,6 +96,7 @@ namespace XOps.Core
             {
                 cell.MarkAsReachable();
             }
+
 
             if (_unit.ActionPoints <= 0) return;
 

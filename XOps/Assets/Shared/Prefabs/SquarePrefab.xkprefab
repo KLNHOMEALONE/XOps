@@ -43,5 +43,3 @@ Hierarchy:
                         ColliderShapes:
                             caf0a659a4f78b9e01e90c2267a52156: !ColliderShapeAssetDesc
                                 Shape: 527cfa3d-53fd-482c-ad24-2d53045398dc:TileCollider
-                            5860b01c56f5ca218398bf2a30a12f0c: !ColliderShapeAssetDesc
-                                Shape: null

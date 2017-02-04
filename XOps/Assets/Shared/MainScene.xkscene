@@ -115,6 +115,7 @@ Hierarchy:
                         Children: {}
                     65ca876acccad5c2652fec2f33317b77: !XOps.Core.CellGrid,XOps.Game
                         Id: 7e483c17-c39a-47ea-a979-ebe65b238cad
+                        CurrentPlayer: null
                         Priority: 3
                         PlayerPrefab: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:Prefabs/SpherePrefab
                         Cells: null
@@ -124,10 +125,11 @@ Hierarchy:
                     4a08c4454c74ceb96717f539f1000606: !XOps.Core.RectangularSquareGridGenerator,XOps.Game
                         Id: f9396f61-aaa3-4269-bab3-6666b291af3d
                         SquarePrefab: 620c3026-0d51-4edc-9269-82c2cdf2aef6:Prefabs/SquarePrefab
+                        SquareModel: 63933894-3432-4289-ac2b-4c226cd2f3d5:Models/Tile
                         CellsParent: null
                         Cells: null
-                        Width: 10
-                        Height: 10
+                        Width: 20
+                        Height: 20
                     348a2cbb41af522cbbafa2cf32ae2c0c: !XOps.Core.RandomUnitGenerator,XOps.Game
                         Id: 3412c4f2-c753-4693-bdc4-0aec9f2fc5f0
                         Priority: 2
@@ -138,7 +140,7 @@ Hierarchy:
                         Id: 474c7383-40b5-4ede-bc07-a313fd3f4e06
                         Priority: 1
                         ObstaclePrefab: 4bbf8d90-0e2d-4360-ae44-623c543d82ba:Prefabs/CubePrefab
-                        NumberofObstacles: 15
+                        NumberofObstacles: 25
                         Cells: null
                     888838c579621be2ddcda453c6a3e37e: !XOps.Player.PlayerInput,XOps.Game
                         Id: 50e3fceb-8b19-4a12-be64-606686ddae9f

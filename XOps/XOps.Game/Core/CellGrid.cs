@@ -12,10 +12,11 @@ namespace XOps.Core
 {
     public class CellGrid : SyncScript
     {
-        private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
+        private readonly EventReceiver<ClickResult> _hoverMouseEvent = new EventReceiver<ClickResult>(PlayerInput.HoverMouseEventKey);
         private readonly EventReceiver<ClickResult> _unitClickedEvent = new EventReceiver<ClickResult>(PlayerInput.UnitClickedEventKey);
         private readonly System.Random _rnd = new System.Random();
         private CellGridGenerator _generator;
+        private Cell _lastCellHovered;
 
         //private float _cellBoundsX, _celleBoundsZ;
 
@@ -57,6 +58,7 @@ namespace XOps.Core
             Units = new List<Unit>();
             _generator = Entity.Get<CellGridGenerator>();
             Cells = _generator.Cells;
+            _lastCellHovered = Cells[0];
             PlacePlayer();
             var player = new HumanPlayer() {PlayerNumber = 0};
             Players.Add(player);
@@ -96,7 +98,7 @@ namespace XOps.Core
         public override void Update()
         {
             SelectUnit();
-            MoveTo();        
+            MouseHoverOver();        
         }
 
         private void SelectUnit()
@@ -112,23 +114,28 @@ namespace XOps.Core
             }
         }
 
-        private void MoveTo()
+        private void MouseHoverOver()
         {
-            // Character speed
             ClickResult clickResult;
-            if (_moveDestinationEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
+            if (_hoverMouseEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
             {
                 if (clickResult.Type == ClickType.Ground)
                 {
-                    //int index = VectorToIndex2D(clickResult.WorldPosition);
-                    //attackEntity = null;
-                    //UpdateDestination(clickResult.WorldPosition);
+                    var cell = clickResult.ClickedEntity.Get<Cell>();
+                    if (cell != null)
+                    {
+                        if (!_lastCellHovered.OffsetCoord.Equals(cell.OffsetCoord))
+                        {
+                            CellGridState.OnCellDeselected(_lastCellHovered);
+                            _lastCellHovered = cell;
+                            CellGridState.OnCellSelected(cell);
+                            
+                        }                        
+                    }
                 }
 
                 if (clickResult.Type == ClickType.LootCrate)
                 {
-                    //attackEntity = clickResult.ClickedEntity;
-                    //Attack();
                 }
             }
         }

@@ -46,11 +46,11 @@ namespace XOps.Example
             var modelComponent = Entity?.Get<ModelComponent>();
             if (modelComponent != null)
             {
-                var materialCount = modelComponent.Model.Materials.Count;
-                modelComponent.Model.Materials.Clear();
+                var materialCount = modelComponent.Materials.Count;
+                modelComponent.Materials.Clear();
                 for (int i = 0; i < materialCount; i++)
                 {
-                    modelComponent.Model.Materials.Add(material);
+                    modelComponent.Materials.Add(i, material);
                 }
             }
         }

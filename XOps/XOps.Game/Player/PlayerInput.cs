@@ -16,7 +16,7 @@ namespace XOps.Player
         /// <summary>
         /// Raised every frame with the intended direction of movement from the player.
         /// </summary>
-        public static readonly EventKey<ClickResult> MoveDestinationEventKey = new EventKey<ClickResult>();
+        public static readonly EventKey<ClickResult> HoverMouseEventKey = new EventKey<ClickResult>();
         public static readonly EventKey<ClickResult> UnitClickedEventKey = new EventKey<ClickResult>();
 
         public static readonly EventKey<bool> JumpEventKey = new EventKey<bool>();
@@ -39,7 +39,7 @@ namespace XOps.Player
             {
                 ClickResult clickResult;
                 Utils.ScreenPositionToWorldPositionRaycast(Input.MousePosition, Camera, this.GetSimulation(), out clickResult);
-
+                HoverMouseEventKey.Broadcast(clickResult);
                 var isMoving = (Input.IsMouseButtonDown(MouseButton.Left) && _lastClickResult.Type == ClickType.Ground && clickResult.Type == ClickType.Ground);
 
                 var isHighlit = (!isMoving && clickResult.Type == ClickType.LootCrate);
@@ -48,33 +48,33 @@ namespace XOps.Player
                 if (isMoving)
                 {
                     _lastClickResult.WorldPosition = clickResult.WorldPosition;
-                    MoveDestinationEventKey.Broadcast(_lastClickResult);
+                    //MoveDestinationEventKey.Broadcast(_lastClickResult);
                 }
 
                 // Object highlighting
-                if (isHighlit)
-                {
-                    var modelComponentA = Highlight?.Get<ModelComponent>();
-                    var modelComponentB = clickResult.ClickedEntity.Get<ModelComponent>();
+                //if (isHighlit)
+                //{
+                //    var modelComponentA = Highlight?.Get<ModelComponent>();
+                //    var modelComponentB = clickResult.ClickedEntity.Get<ModelComponent>();
 
-                    if (modelComponentA != null && modelComponentB != null)
-                    {
-                        var materialCount = modelComponentB.Materials.Count;
-                        modelComponentA.Model = modelComponentB.Model;
-                        modelComponentA.Materials.Clear();
-                        for (int i = 0; i < materialCount; i++)
-                            modelComponentA.Materials.Add(i, HighlightMaterial);
+                //    if (modelComponentA != null && modelComponentB != null)
+                //    {
+                //        var materialCount = modelComponentB.Materials.Count;
+                //        modelComponentA.Model = modelComponentB.Model;
+                //        modelComponentA.Materials.Clear();
+                //        for (int i = 0; i < materialCount; i++)
+                //            modelComponentA.Materials.Add(i, HighlightMaterial);
 
-                        modelComponentA.Entity.Transform.UseTRS = false;
-                        modelComponentA.Entity.Transform.LocalMatrix = modelComponentB.Entity.Transform.WorldMatrix;
-                    }
-                }
-                else
-                {
-                    var modelComponentA = Highlight?.Get<ModelComponent>();
-                    if (modelComponentA != null)
-                        modelComponentA.Entity.Transform.LocalMatrix = Matrix.Scaling(0);
-                }
+                //        modelComponentA.Entity.Transform.UseTRS = false;
+                //        modelComponentA.Entity.Transform.LocalMatrix = modelComponentB.Entity.Transform.WorldMatrix;
+                //    }
+                //}
+                //else
+                //{
+                //    var modelComponentA = Highlight?.Get<ModelComponent>();
+                //    if (modelComponentA != null)
+                //        modelComponentA.Entity.Transform.LocalMatrix = Matrix.Scaling(0);
+                //}
             }
 
             // Mouse-based camera rotation. Only enabled after you click the screen to lock your cursor, pressing escape cancels this
@@ -87,7 +87,7 @@ namespace XOps.Player
                     _lastClickResult = clickResult;
                     if (clickResult.Type == ClickType.Ground)
                     {
-                        MoveDestinationEventKey.Broadcast(clickResult);
+                        //MoveDestinationEventKey.Broadcast(clickResult);
                     }
                     if (clickResult.Type == ClickType.Unit)
                     {
@@ -95,7 +95,7 @@ namespace XOps.Player
                     }
                     if (clickResult.Type == ClickType.LootCrate)
                     {
-                        MoveDestinationEventKey.Broadcast(clickResult);
+                        //MoveDestinationEventKey.Broadcast(clickResult);
                     }
                     if (ClickEffect != null && clickResult.Type == ClickType.Ground)
                     {

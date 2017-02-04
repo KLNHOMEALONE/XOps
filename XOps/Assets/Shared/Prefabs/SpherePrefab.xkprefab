@@ -43,7 +43,7 @@ Hierarchy:
                         AttackRange: 9
                         AttackFactor: 1
                         DefenceFactor: 1
-                        MovementPoints: 4
+                        MovementPoints: 7
                         MovementSpeed: 2.0
                         ActionPoints: 9
                         PlayerNumber: 0
