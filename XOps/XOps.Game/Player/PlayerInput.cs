@@ -17,6 +17,7 @@ namespace XOps.Player
         /// Raised every frame with the intended direction of movement from the player.
         /// </summary>
         public static readonly EventKey<ClickResult> HoverMouseEventKey = new EventKey<ClickResult>();
+        public static readonly EventKey<ClickResult> MoveDestinationEventKey = new EventKey<ClickResult>();
         public static readonly EventKey<ClickResult> UnitClickedEventKey = new EventKey<ClickResult>();
 
         public static readonly EventKey<bool> JumpEventKey = new EventKey<bool>();
@@ -87,7 +88,7 @@ namespace XOps.Player
                     _lastClickResult = clickResult;
                     if (clickResult.Type == ClickType.Ground)
                     {
-                        //MoveDestinationEventKey.Broadcast(clickResult);
+                        MoveDestinationEventKey.Broadcast(clickResult);
                     }
                     if (clickResult.Type == ClickType.Unit)
                     {

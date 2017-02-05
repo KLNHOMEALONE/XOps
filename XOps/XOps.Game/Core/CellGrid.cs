@@ -14,6 +14,7 @@ namespace XOps.Core
     {
         private readonly EventReceiver<ClickResult> _hoverMouseEvent = new EventReceiver<ClickResult>(PlayerInput.HoverMouseEventKey);
         private readonly EventReceiver<ClickResult> _unitClickedEvent = new EventReceiver<ClickResult>(PlayerInput.UnitClickedEventKey);
+        private readonly EventReceiver<ClickResult> _moveeEvent = new EventReceiver<ClickResult>(PlayerInput.MoveDestinationEventKey);
         private readonly System.Random _rnd = new System.Random();
         private CellGridGenerator _generator;
         private Cell _lastCellHovered;
@@ -98,7 +99,24 @@ namespace XOps.Core
         public override void Update()
         {
             SelectUnit();
-            MouseHoverOver();        
+            MouseHoverOver();
+            Move();       
+        }
+
+        private void Move()
+        {
+            ClickResult clickResult;
+            if (_moveeEvent.TryReceive(out clickResult) && clickResult.Type != ClickType.Empty)
+            {
+                if (clickResult.Type == ClickType.Ground)
+                {
+                    var cell = clickResult.ClickedEntity.Get<Cell>();
+                    if (cell != null)
+                    {
+                        CellGridState.OnCellClicked(cell);
+                    }
+                }
+            }
         }
 
         private void SelectUnit()
@@ -136,6 +154,7 @@ namespace XOps.Core
 
                 if (clickResult.Type == ClickType.LootCrate)
                 {
+                    CellGridState.OnCellDeselected(_lastCellHovered);
                 }
             }
         }

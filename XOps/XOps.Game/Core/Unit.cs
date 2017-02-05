@@ -2,9 +2,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Engine.Events;
+using SiliconStudio.Xenko.Physics;
 using XOps.Common;
 using XOps.Core.Events;
 using XOps.Player;
@@ -14,8 +16,25 @@ namespace XOps.Core
     public abstract class Unit : SyncScript
     {
         private static readonly Pathfinding Pathfinder = new AStarPathfinding();
+        private CharacterComponent _character;
+        private float _yawOrientation;
+
+        // The PlayerController will propagate its speed to the AnimationController
+        public static readonly EventKey<float> RunSpeedEventKey = new EventKey<float>();
 
         private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.HoverMouseEventKey);
+
+        private Vector3 _moveDestination;
+
+        // Allow some inertia to the movement
+        private Vector3 _moveDirection = Vector3.Zero;
+
+        private int _waypointIndex;
+
+        private List<Cell> _pathToDestination;
+
+        private bool _isRunning = false;
+
         /// <summary>
         /// CellClicked event is invoked when user clicks the unit. It requires a collider on the cell game object to work.
         /// </summary>
@@ -68,6 +87,34 @@ namespace XOps.Core
         /// Determines speed of movement animation.
         /// </summary>
         public float MovementSpeed;
+
+        /// <summary>
+        /// The maximum speed the character can run at
+        /// </summary>
+        [Display("Run Speed")]
+        public float MaxRunSpeed { get; set; } = 15;
+
+
+        /// <summary>
+        /// The distance from the destination at which the character will stop moving
+        /// </summary>
+        public float DestinationThreshold { get; set; } = 0.6f;
+
+        /// <summary>
+        /// A number from 0 to 1 indicating how much a character should slow down when going around corners
+        /// </summary>
+        /// <remarks>0 is no slowdown and 1 is completely stopping (on >90 degree angles)</remarks>
+        public float CornerSlowdown { get; set; } = 0.6f;
+
+        /// <summary>
+        /// Multiplied by the distance to the target and clamped to 1 and used to slow down when nearing the destination
+        /// </summary>
+        public float DestinationSlowdown { get; set; } = 0.4f;
+
+        private bool ReachedDestination => _waypointIndex >= _pathToDestination.Count; 
+
+        private Vector3 CurrentWaypoint => _waypointIndex < _pathToDestination.Count ? _pathToDestination[_waypointIndex].Entity.Transform.Position : Vector3.Zero;
+
         /// <summary>
         /// Determines how many attacks unit can perform in one turn.
         /// </summary>
@@ -83,8 +130,16 @@ namespace XOps.Core
         /// </summary>
         public bool IsMoving { get; set; }
 
+        public override void Start()
+        {
+            base.Start();
+            _character = Entity.Get<CharacterComponent>();
+            _moveDestination = Entity.Transform.WorldMatrix.TranslationVector;
+        }
+
         public override void Update()
         {
+            Move(MaxRunSpeed);
         }
 
         /// <summary>
@@ -214,45 +269,181 @@ namespace XOps.Core
             }
         }
 
+        private void Move(float maxRunSpeed)
+        {
+            if (!_isRunning)
+            {
+                RunSpeedEventKey.Broadcast(0);
+                return;
+            }
+            UpdateMoveTowardsDestination(maxRunSpeed);
+        }
+
+        private void UpdateDestination(Cell destination)
+        {
+
+            Vector3 delta = _moveDestination - destination.Entity.Transform.Position;
+            // Skip the points that are too close to the player
+
+            while (!ReachedDestination &&
+                   (CurrentWaypoint - Entity.Transform.WorldMatrix.TranslationVector).Length() < 0.25f)
+            {
+                _waypointIndex++;
+            }
+
+            // If this path still contains more points, set the player to running
+            if (!ReachedDestination)
+            {
+                _isRunning = true;
+                _moveDestination = destination.Entity.Transform.Position;
+            }
+            else
+            {
+                HaltMovement();
+            }
+        }
+
+        private void UpdateMoveTowardsDestination(float speed)
+        {
+            if (!ReachedDestination)
+            {
+                var direction = CurrentWaypoint - Entity.Transform.WorldMatrix.TranslationVector;
+
+                // Get distance towards next point and normalize the direction at the same time
+                var length = direction.Length();
+                direction /= length;
+
+                // Check when to advance to the next waypoint
+                bool advance = false;
+
+                // Check to see if an intermediate point was passed by projecting the position along the path
+                if (_pathToDestination.Count > 0 && _waypointIndex > 0 && _waypointIndex != _pathToDestination.Count - 1)
+                {
+                    Vector3 pointNormal = CurrentWaypoint - _pathToDestination[_waypointIndex - 1].Entity.Transform.Position;
+                    pointNormal.Normalize();
+                    float current = Vector3.Dot(Entity.Transform.WorldMatrix.TranslationVector, pointNormal);
+                    float target = Vector3.Dot(CurrentWaypoint, pointNormal);
+                    if (current > target)
+                    {
+                        advance = true;
+                    }
+                }
+                else
+                {
+                    if (length < DestinationThreshold) // Check distance to final point
+                    {
+                        advance = true;
+                    }
+                }
+
+                // Advance waypoint?
+                if (advance)
+                {
+                    _waypointIndex++;
+                    if (ReachedDestination)
+                    {
+                        // Final waypoint reached
+                        HaltMovement();
+                        return;
+                    }
+                }
+
+                // Calculate speed based on distance from final destination
+                float moveSpeed = (_moveDestination - Entity.Transform.WorldMatrix.TranslationVector).Length() * DestinationSlowdown;
+                if (moveSpeed > 1.0f)
+                    moveSpeed = 1.0f;
+
+                // Slow down around corners
+                float cornerSpeedMultiply = Math.Max(0.0f, Vector3.Dot(direction, _moveDirection)) * CornerSlowdown + (1.0f - CornerSlowdown);
+
+                // Allow a very simple inertia to the character to make animation transitions more fluid
+                _moveDirection =_moveDirection * 0.85f + direction * moveSpeed * cornerSpeedMultiply * 0.15f;
+
+                _character.SetVelocity(_moveDirection * speed);
+
+                // Broadcast speed as per cent of the max speed
+                RunSpeedEventKey.Broadcast(_moveDirection.Length());
+
+                // Character orientation
+                if (_moveDirection.Length() > 0.001)
+                {
+                    _yawOrientation = MathUtil.RadiansToDegrees((float)Math.Atan2(-_moveDirection.Z, _moveDirection.X) + MathUtil.PiOverTwo);
+                }
+                Entity.Transform.Rotation = Quaternion.RotationYawPitchRoll(MathUtil.DegreesToRadians(_yawOrientation), 0, 0);
+            }
+            else
+            {
+                // No target
+                HaltMovement();
+            }
+        }
+
+        private void HaltMovement()
+        {
+            _isRunning = false;
+            _moveDirection = Vector3.Zero;
+            _character.SetVelocity(Vector3.Zero);
+            _moveDestination = Entity.Transform.WorldMatrix.TranslationVector;
+        }
+
         public virtual void Move(Cell destinationCell, List<Cell> path)
         {
-            if (IsMoving)
+            if (_isRunning)
                 return;
 
             var totalMovementCost = path.Sum(h => h.MovementCost);
             if (MovementPoints < totalMovementCost)
                 return;
-
+            path.Reverse();
             MovementPoints -= totalMovementCost;
 
             Cell.IsTaken = false;
             Cell = destinationCell;
             destinationCell.IsTaken = true;
 
-            if (MovementSpeed > 0)
-                MovementAnimation(path);
-            else
-                Entity.Transform.Position = Cell.GetPosition();
+            _pathToDestination = path;
+            _waypointIndex = 0;
+            UpdateDestination(destinationCell);
+            //if (MovementSpeed > 0)
+            //    MovementAnimation(path);
+            //else
+            //    Entity.Transform.Position = Cell.GetPosition();
 
-            UnitMoved?.Invoke(this, new MovementEventArgs(Cell, destinationCell, path));
+            //UnitMoved?.Invoke(this, new MovementEventArgs(Cell, destinationCell, path));
         }
-        protected virtual IEnumerator MovementAnimation(List<Cell> path)
-        {
-            IsMoving = true;
+        //protected void MovementAnimation(List<Cell> path)
+        //{
+        //    IsMoving = true;
+        //    path.Reverse();
+        //    foreach (var cell in path)
+        //    {
+        //        UpdateDestination(cell);
+        //    }
+        //    IsMoving = false;
+        //}
 
-            path.Reverse();
-            foreach (var cell in path)
-            {
-                while (new Vector2(Entity.Transform.Position.X, Entity.Transform.Position.Z) != new Vector2(cell.GetPosition().X, cell.GetPosition().Z))
-                {
-                    //TODO:
-                    //Entity.Transform.Position = Vector3.MoveTowards(Entity.Transform.Position, new Vector3(cell.GetPosition().X, cell.GetPosition().Z, Entity.Transform.Position.Z), Time.deltaTime * MovementSpeed);
-                    yield return 0;
-                }
-            }
+        //private void UpdateDestination(Cell cell)
+        //{
+        //    var currentWaypoint = cell.Entity.Transform.Position;
+        //    var direction = currentWaypoint - Entity.Transform.WorldMatrix.TranslationVector;
 
-            IsMoving = false;
-        }
+        //    // Get distance towards next point and normalize the direction at the same time
+        //    var length = direction.Length();
+        //    direction /= length;
+
+        //    // Calculate speed based on distance from final destination
+        //    float moveSpeed = (_moveDestination - Entity.Transform.WorldMatrix.TranslationVector).Length() * DestinationSlowdown;
+        //    if (moveSpeed > 1.0f)
+        //        moveSpeed = 1.0f;
+
+        //    // Slow down around corners
+        //    float cornerSpeedMultiply = Math.Max(0.0f, Vector3.Dot(direction, _moveDirection)) * CornerSlowdown + (1.0f - CornerSlowdown);
+
+        //    // Allow a very simple inertia to the character to make animation transitions more fluid
+        //    _moveDirection = _moveDirection * 0.85f + direction * moveSpeed * cornerSpeedMultiply * 0.15f;
+
+        //    _character.SetVelocity(_moveDirection * MaxRunSpeed);
+        //}
 
         ///<summary>
         /// Method indicates if unit is capable of moving to cell given as parameter.
