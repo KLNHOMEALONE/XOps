@@ -50,6 +50,7 @@ namespace XOps.Core
                     var squareSize = cell.GetCellDimensions(prefabEntity);
                     cell.OffsetCoord = new Vector2(i, j);
                     cell.MovementCost = 1;
+                    cell.UnMark();
                     var model = prefabEntity.Get<ModelComponent>();
                     model.Materials.Add(0, material);
                     prefabEntity.Transform.Position = new Vector3(i * squareSize.X + position.X, 0.5f + position.Y, j * squareSize.Z + position.Z);

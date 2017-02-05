@@ -21,24 +21,24 @@ namespace XOps.Example
 
         public override void MarkAsReachable()
         {
-            ChangeMaterial(ReachableMaterial);
-            //SetColor(new Color(1, 0.92f, 0.16f, 0.5f));
+            //ChangeMaterial(ReachableMaterial);
+            SetColor(new Color(1, 0.92f, 0.16f, 0.5f));
         }
 
         public override void MarkAsPath()
         {
-            ChangeMaterial(PathMaterial);
-           // SetColor(new Color(0, 1, 0, 0.5f));
+            //ChangeMaterial(PathMaterial);
+           SetColor(new Color(0, 1, 0, 0.5f));
         }
         public override void MarkAsHighlighted()
         {
-            ChangeMaterial(HighlightedMaterial);
-            //SetColor(new Color(0.8f, 0.8f, 0.8f, 0.5f));
+            //ChangeMaterial(HighlightedMaterial);
+            SetColor(new Color(0.8f, 0.8f, 0.8f, 0.5f));
         }
         public override void UnMark()
         {
-            ChangeMaterial(DefaultMaterial);
-            //SetColor(new Color(1, 1, 1, 0));
+            //ChangeMaterial(DefaultMaterial);
+            SetColor(new Color(1, 1, 1, 0));
         }
 
         private void ChangeMaterial(Material material)
@@ -56,12 +56,12 @@ namespace XOps.Example
         }
         private void SetColor(Color color)
         {
-            //var sprite = Entity.Get<SpriteComponent>();
-            //if (sprite != null)
-            //{
-            //    sprite.Color = color;
-            //}
-            
+            var sprite = Entity.GetChild(0).Get<SpriteComponent>();
+            if (sprite != null)
+            {
+                sprite.Color = color;
+            }
+
             //var highlighter = transform.FindChild("Highlighter");
             //var spriteRenderer = highlighter.GetComponent<SpriteRenderer>();
             //if (spriteRenderer != null)

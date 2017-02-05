@@ -6,6 +6,22 @@ Hierarchy:
     RootPartIds:
         - bb03368f-1366-4511-a71e-dbaa1ba861f1
     Parts:
+        -   Folder: 
+            Entity:
+                Id: 6210ef4c-994d-4646-b312-f8becfa518c6
+                Name: Sprite
+                Components:
+                    110fcf7e422bac3df6deee2c71952346: !TransformComponent
+                        Id: fad00ad7-84b2-4ca2-9d84-a2ba245af5f4
+                        Position: {X: 0.0, Y: 0.001, Z: 0.0}
+                        Rotation: {X: 0.707106769, Y: 0.0, Z: 0.0, W: 0.707106769}
+                        Scale: {X: 1.5, Y: 1.5, Z: 1.5}
+                        Children: {}
+                    69c819c36891e626e17e8c87a1880fa1: !SpriteComponent
+                        Id: ebeadc4d-91cb-4181-ae19-dcab395f2271
+                        SpriteProvider: !SpriteFromSheet
+                            Sheet: 6c3a4afb-0e46-4088-a96e-d2c4218dcf6e:Sprites/SpriteSheet
+                        Color: {R: 1.0, G: 1.0, B: 1.0, A: 1.0}
         -   Entity:
                 Id: bb03368f-1366-4511-a71e-dbaa1ba861f1
                 Name: Tile
@@ -15,7 +31,8 @@ Hierarchy:
                         Position: {X: 1.00955009, Y: 0.0, Z: 0.8695028}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: {}
+                        Children:
+                            35e1d89c588d33e06f2938f3c82900db: 6210ef4c-994d-4646-b312-f8becfa518c6/fad00ad7-84b2-4ca2-9d84-a2ba245af5f4
                     e8e4c9fc855d7327ef987a36a95ce709: !ModelComponent
                         Id: ced37f59-c7ab-4740-8d2b-13f59ffd3df2
                         Model: 63933894-3432-4289-ac2b-4c226cd2f3d5:Models/Tile

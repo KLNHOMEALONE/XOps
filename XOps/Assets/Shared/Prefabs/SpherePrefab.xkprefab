@@ -50,4 +50,8 @@ Hierarchy:
                         UnitState: null
                         Buffs: null
                         Cell: null
+                        MaxRunSpeed: 30.0
+                        DestinationThreshold: 0.6
+                        CornerSlowdown: 0.6
+                        DestinationSlowdown: 0.4
                         IsMoving: false
