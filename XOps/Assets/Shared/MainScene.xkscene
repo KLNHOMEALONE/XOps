@@ -99,9 +99,9 @@ SceneSettings:
 Hierarchy:
     RootPartIds:
         - 197576b7-61e7-4840-9da6-fb77d4b6b106
+        - 130c5e9d-e2c1-4cd5-9bef-c988f9f1ccb4
         - 65adab78-611f-4747-be81-a88072c5d373
         - f965e782-3441-4cfd-b015-459afca3405a
-        - 130c5e9d-e2c1-4cd5-9bef-c988f9f1ccb4
     Parts:
         -   Entity:
                 Id: 130c5e9d-e2c1-4cd5-9bef-c988f9f1ccb4
@@ -117,7 +117,7 @@ Hierarchy:
                         Id: 7e483c17-c39a-47ea-a979-ebe65b238cad
                         CurrentPlayer: null
                         Priority: 3
-                        PlayerPrefab: b4f7ee00-b893-44cd-bee1-1414c9ee7ceb:Prefabs/SpherePrefab
+                        PlayerPrefab: 9e0fba39-f83c-49b9-85f0-b7be12192adf:Prefabs/Player
                         Cells: null
                         Units: null
                         Players: {}
@@ -172,7 +172,8 @@ Hierarchy:
                         KeyboardRotationSpeed: {X: 3.0, Y: 3.0}
                         MouseRotationSpeed: {X: 90.0, Y: 60.0}
                         TouchRotationSpeed: {X: 60.0, Y: 40.0}
-        -   Entity:
+        -   Folder: GlobalLights
+            Entity:
                 Id: 65adab78-611f-4747-be81-a88072c5d373
                 Name: Directional light
                 Components:
@@ -196,7 +197,8 @@ Hierarchy:
                                 PartitionMode: !LightDirectionalShadowMap.PartitionLogarithmic {}
                                 BiasParameters: {}
                         Intensity: 5.0
-        -   Entity:
+        -   Folder: GlobalLights
+            Entity:
                 Id: f965e782-3441-4cfd-b015-459afca3405a
                 Name: Skybox
                 Components:

@@ -1,0 +1,71 @@
+!PrefabAsset
+Id: 9e0fba39-f83c-49b9-85f0-b7be12192adf
+SerializedVersion: {Xenko: 1.9.0-beta05}
+Tags: []
+Hierarchy:
+    RootPartIds:
+        - 9dbbd0e1-15ec-4c47-93b9-8d1fb1a342e5
+    Parts:
+        -   Entity:
+                Id: 9dbbd0e1-15ec-4c47-93b9-8d1fb1a342e5
+                Name: Player
+                Components:
+                    16a1162c74f61d41a6e44ef4a7b55726: !TransformComponent
+                        Id: 480607e0-7f25-4908-83eb-e9f4fed723e8
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    ec31f864090a652064ceeab4fc80aaed: !ModelComponent
+                        Id: c0684a13-d791-4ab5-b329-62ad78691a1e
+                        Model: 8125d6a8-a1ed-4263-bfbb-b1a46f5b461a:Models/mannequinModel
+                        Materials: {}
+                    b779468a8dc543f4de6ac15df7c5ee0e: !CharacterComponent
+                        Id: 207a7f70-685f-4193-b621-ae43a3e56452
+                        CollisionGroup: CharacterFilter
+                        CanSleep: false
+                        Restitution: 0.0
+                        Friction: 0.5
+                        RollingFriction: 0.0
+                        CcdMotionThreshold: 0.0
+                        CcdSweptSphereRadius: 0.0
+                        FallSpeed: 10.0
+                        MaxSlope: {Radians: 0.7853982}
+                        JumpSpeed: 5.0
+                        Gravity: -10.0
+                        ColliderShapes:
+                            59c4bcc5c3122ba7d829e786823f4cf0: !CapsuleColliderShapeDesc
+                                Length: 1.2
+                                Radius: 0.4
+                                LocalOffset: {X: 0.0, Y: 0.95, Z: 0.0}
+                                LocalRotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                    8dced7cc9740fb27ba9afa2bdd0a1c3e: !XOps.Example.MyUnit,XOps.Game
+                        Id: 370b84f8-5aa4-41af-b796-0370775d1181
+                        HitPoints: 15
+                        AttackRange: 9
+                        AttackFactor: 0
+                        DefenceFactor: 0
+                        MovementPoints: 7
+                        ActionPoints: 7
+                        PlayerNumber: 0
+                        UnitState: null
+                        Buffs: null
+                        Cell: null
+                        MaxRunSpeed: 30.0
+                        DestinationThreshold: 0.2
+                        CornerSlowdown: 0.6
+                        DestinationSlowdown: 0.4
+                        IsMoving: false
+                    ff56491f01e3188e4ba6b91ddf89eed9: !AnimationComponent
+                        Id: 73300e35-a304-4d50-8179-db72ab94c4f8
+                        Animations: {}
+                        PlayingAnimations: {}
+                    2d743361825e41f4fe82d1fd0c0646fe: !XOps.Player.AnimationController,XOps.Game
+                        Id: 0aed038e-f5bb-4562-a0a3-ce57a91a6299
+                        AnimationComponent: 9dbbd0e1-15ec-4c47-93b9-8d1fb1a342e5/73300e35-a304-4d50-8179-db72ab94c4f8
+                        AnimationIdle: d779efdc-ed68-4b90-bb6e-ed8cb671879d:Animations/Idle
+                        AnimationWalk: daff4e0e-1e5f-43ec-a189-da172ec41939:Animations/Walk
+                        AnimationRun: aaf034f3-11ae-44a4-9b09-ebf9870579a4:Animations/Run
+                        AnimationPunch: e315aa67-570e-466b-9b24-c424de8f38b9:Animations/Punch
+                        WalkThreshold: 0.25
+                        TimeFactor: 1.0

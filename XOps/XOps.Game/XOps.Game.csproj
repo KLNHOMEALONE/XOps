@@ -145,6 +145,7 @@
     <Compile Include="Core\UnitStateNormal.cs" />
     <Compile Include="Example\MySquare.cs" />
     <Compile Include="Example\MyUnit.cs" />
+    <Compile Include="Player\AnimationController.cs" />
     <Compile Include="Player\PlayerInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

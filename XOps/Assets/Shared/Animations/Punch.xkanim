@@ -1,0 +1,10 @@
+!Animation
+Id: e315aa67-570e-466b-9b24-c424de8f38b9
+SerializedVersion: {Xenko: 1.5.0-alpha02}
+Tags: []
+Source: ../../../Resources/Animation/Punch.fbx
+PivotPosition: {X: 0.0, Y: 0.0, Z: 0.0}
+RepeatMode: LoopInfinite
+Skeleton: 9263812b-d868-4947-8f8d-9b987b901031:Models/mannequinModel Skeleton
+RootMotion: false
+PreviewModel: 8125d6a8-a1ed-4263-bfbb-b1a46f5b461a:Models/mannequinModel

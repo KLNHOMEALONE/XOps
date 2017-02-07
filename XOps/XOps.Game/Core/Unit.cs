@@ -22,6 +22,9 @@ namespace XOps.Core
         // The PlayerController will propagate its speed to the AnimationController
         public static readonly EventKey<float> RunSpeedEventKey = new EventKey<float>();
 
+        // The PlayerController will propagate if it is attacking to the AnimationController
+        public static readonly EventKey<bool> IsAttackingEventKey = new EventKey<bool>();
+
         private readonly EventReceiver<ClickResult> _moveDestinationEvent = new EventReceiver<ClickResult>(PlayerInput.HoverMouseEventKey);
 
         private Vector3 _moveDestination;
@@ -83,10 +86,12 @@ namespace XOps.Core
         /// Determines how far on the grid the unit can move.
         /// </summary>
         public int MovementPoints;
+
+
         /// <summary>
         /// Determines speed of movement animation.
         /// </summary>
-        public float MovementSpeed;
+        //public float MovementSpeed;
 
         /// <summary>
         /// The maximum speed the character can run at
