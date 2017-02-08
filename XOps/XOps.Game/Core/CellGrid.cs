@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using SiliconStudio.Core;
 using SiliconStudio.Core.Mathematics;
 using SiliconStudio.Xenko.Engine;
 using SiliconStudio.Xenko.Engine.Events;
 using XOps.Common;
 using XOps.Player;
+using SiliconStudio.Xenko.UI.Controls;
+using SiliconStudio.Xenko.UI.Panels;
 
 namespace XOps.Core
 {
@@ -18,6 +21,9 @@ namespace XOps.Core
         private readonly System.Random _rnd = new System.Random();
         private CellGridGenerator _generator;
         private Cell _lastCellHovered;
+        private UIComponent _ui;
+        private UIPage _page;
+        private Button _button;
 
         //private float _cellBoundsX, _celleBoundsZ;
 
@@ -56,6 +62,12 @@ namespace XOps.Core
 
         public override void Start()
         {
+            _ui = Entity.Get<UIComponent>();
+            _page = _ui.Page;
+            _button = (Button) ((Panel)_page.RootElement).Children.FirstOrDefault(u => u.Name.Equals("EndTurn"));
+            _button.Click += Button_Click;
+
+            //_page.
             Units = new List<Unit>();
             _generator = Entity.Get<CellGridGenerator>();
             Cells = _generator.Cells;
@@ -68,6 +80,11 @@ namespace XOps.Core
             StartGame();
             //_cellBoundsX = Cells[0].CellSize.X;
             //_celleBoundsZ = Cells[0].CellSize.Z;
+        }
+
+        private void Button_Click(object sender, SiliconStudio.Xenko.UI.Events.RoutedEventArgs e)
+        {
+            EndTurn();
         }
 
         private void PlacePlayer()
@@ -96,6 +113,35 @@ namespace XOps.Core
             Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
             Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
         }
+
+        public void EndTurn()
+        {
+            var distinctUnits = Units.Select(u => u.PlayerNumber).Distinct().ToList();
+            if (distinctUnits.Count == 1 && !distinctUnits.First().Equals(0))
+            {
+                return;
+            }
+//            if (Units.Select(u => u.PlayerNumber).Distinct().Count() == 1)
+//            {
+//                return;
+//            }
+            CellGridState = new CellGridStateTurnChanging(this);
+
+            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnEnd(); });
+
+            CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
+            while (Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).Count == 0)
+            {
+                CurrentPlayerNumber = (CurrentPlayerNumber + 1) % NumberOfPlayers;
+            }//Skipping players that are defeated.
+
+//            if (TurnEnded != null)
+//                TurnEnded.Invoke(this, new EventArgs());
+
+            Units.FindAll(u => u.PlayerNumber.Equals(CurrentPlayerNumber)).ForEach(u => { u.OnTurnStart(); });
+            Players.Find(p => p.PlayerNumber.Equals(CurrentPlayerNumber)).Play(this);
+        }
+
         public override void Update()
         {
             SelectUnit();

@@ -151,6 +151,11 @@ Hierarchy:
                         HighlightMaterial: null
                         Camera: 197576b7-61e7-4840-9da6-fb77d4b6b106/61bff9ed-94ea-452f-a610-d696b88caef0
                         ClickEffect: null
+                    7d6585b489c8f9d433f66cbf4652bbfd: !UIComponent
+                        Id: 748118ee-3a1d-4ca2-bcd9-bf61fa2c48e8
+                        Page: 3c3f0f20-d10c-4086-8cf1-06e6e0621dcd:Page
+                        Resolution: {X: 1280.0, Y: 720.0, Z: 1000.0}
+                        Size: {X: 1.0, Y: 1.0, Z: 1.0}
         -   Entity:
                 Id: 197576b7-61e7-4840-9da6-fb77d4b6b106
                 Name: Camera

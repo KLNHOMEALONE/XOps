@@ -119,6 +119,7 @@
     <Compile Include="Core\CellGridState.cs" />
     <Compile Include="Core\CellExtension.cs" />
     <Compile Include="Core\CellGridStateGameOver.cs" />
+    <Compile Include="Core\CellGridStateTurnChanging.cs" />
     <Compile Include="Core\CellGridStateUnitSelected.cs" />
     <Compile Include="Core\CellGridStateWaitingForInput.cs" />
     <Compile Include="Core\Events\AttackEventArgs.cs" />
