@@ -15,11 +15,8 @@ Hierarchy:
                         Position: {X: 0.0, Y: 0.0, Z: 0.0}
                         Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
                         Scale: {X: 1.0, Y: 1.0, Z: 1.0}
-                        Children: {}
-                    ec31f864090a652064ceeab4fc80aaed: !ModelComponent
-                        Id: c0684a13-d791-4ab5-b329-62ad78691a1e
-                        Model: 8125d6a8-a1ed-4263-bfbb-b1a46f5b461a:Models/mannequinModel
-                        Materials: {}
+                        Children:
+                            80bfc22f090d8457a42ed93cdbc3ce2a: adf6696d-1606-40d9-b403-530e7a53b183/482bd408-36ab-451f-87b6-3816cbcbed68
                     b779468a8dc543f4de6ac15df7c5ee0e: !CharacterComponent
                         Id: 207a7f70-685f-4193-b621-ae43a3e56452
                         CollisionGroup: CharacterFilter
@@ -56,13 +53,28 @@ Hierarchy:
                         CornerSlowdown: 0.6
                         DestinationSlowdown: 0.4
                         IsMoving: false
-                    ff56491f01e3188e4ba6b91ddf89eed9: !AnimationComponent
-                        Id: 73300e35-a304-4d50-8179-db72ab94c4f8
+        -   Folder: 
+            Entity:
+                Id: adf6696d-1606-40d9-b403-530e7a53b183
+                Name: Model
+                Components:
+                    3d59b7e5940ee7e05a79f91a4a3dcfb1: !TransformComponent
+                        Id: 482bd408-36ab-451f-87b6-3816cbcbed68
+                        Position: {X: 0.0, Y: 0.0, Z: 0.0}
+                        Rotation: {X: 0.0, Y: 0.0, Z: 0.0, W: 1.0}
+                        Scale: {X: 1.0, Y: 1.0, Z: 1.0}
+                        Children: {}
+                    63898bace93056acd7995b72cc3944ea: !ModelComponent
+                        Id: cbe4d88e-9a42-4941-818f-745925cd8d7e
+                        Model: 8125d6a8-a1ed-4263-bfbb-b1a46f5b461a:Models/mannequinModel
+                        Materials: {}
+                    82aefa64f6a66dfb15b977bc05ad8cc7: !AnimationComponent
+                        Id: 37380599-5d75-4373-a539-6ae371d92dcc
                         Animations: {}
                         PlayingAnimations: {}
-                    2d743361825e41f4fe82d1fd0c0646fe: !XOps.Player.AnimationController,XOps.Game
-                        Id: 0aed038e-f5bb-4562-a0a3-ce57a91a6299
-                        AnimationComponent: 9dbbd0e1-15ec-4c47-93b9-8d1fb1a342e5/73300e35-a304-4d50-8179-db72ab94c4f8
+                    03d953b7c292a0f61f4bdc3d5d7ab42f: !XOps.Player.AnimationController,XOps.Game
+                        Id: 1088ddc8-c7e5-4738-bd05-1afc38e1d3e9
+                        AnimationComponent: adf6696d-1606-40d9-b403-530e7a53b183/37380599-5d75-4373-a539-6ae371d92dcc
                         AnimationIdle: d779efdc-ed68-4b90-bb6e-ed8cb671879d:Animations/Idle
                         AnimationWalk: daff4e0e-1e5f-43ec-a189-da172ec41939:Animations/Walk
                         AnimationRun: aaf034f3-11ae-44a4-9b09-ebf9870579a4:Animations/Run

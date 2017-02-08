@@ -18,6 +18,7 @@ namespace XOps.Core
         private static readonly Pathfinding Pathfinder = new AStarPathfinding();
         private CharacterComponent _character;
         private float _yawOrientation;
+        private Entity _modelEntity;
 
         // The PlayerController will propagate its speed to the AnimationController
         public static readonly EventKey<float> RunSpeedEventKey = new EventKey<float>();
@@ -138,6 +139,7 @@ namespace XOps.Core
         public override void Start()
         {
             base.Start();
+            _modelEntity = Entity.GetChild(0);
             _character = Entity.Get<CharacterComponent>();
             _moveDestination = Entity.Transform.WorldMatrix.TranslationVector;
         }
@@ -374,7 +376,7 @@ namespace XOps.Core
                 {
                     _yawOrientation = MathUtil.RadiansToDegrees((float)Math.Atan2(-_moveDirection.Z, _moveDirection.X) + MathUtil.PiOverTwo);
                 }
-                Entity.Transform.Rotation = Quaternion.RotationYawPitchRoll(MathUtil.DegreesToRadians(_yawOrientation), 0, 0);
+                _modelEntity.Transform.Rotation = Quaternion.RotationYawPitchRoll(MathUtil.DegreesToRadians(_yawOrientation), 0, 0);
             }
             else
             {
